@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "824370468471",
+    "firebase_url": "https://lekham-1632232453087-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "lekham-1632232453087",
+    "storage_bucket": "lekham-1632232453087.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:824370468471:android:4f0f072b31743f86665872",
+        "android_client_info": {
+          "package_name": "com.lekham.blog.app.np"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "824370468471-s5h76uc2n9fs48s5hemut5nrhqpl9chm.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.lekham.blog.app.np",
+            "certificate_hash": "5696cc5c4af3c23f49073b0d574751ba35ad1616"
+          }
+        },
+        {
+          "client_id": "824370468471-s9lqa3ato24bjelpcc65o3c28lm5chu4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBKhnAil7nEuf6ni_OXr9l8Vhv07PzQnYw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "824370468471-d7ragtmhv5l71di84b30o5ji55tag37b.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

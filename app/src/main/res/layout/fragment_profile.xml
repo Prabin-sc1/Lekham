@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@color/white"
+    tools:context=".Fragment.ProfileFragment">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginBottom="5dp"
+        app:cardBackgroundColor="@color/white">
+
+
+        <ImageButton
+            android:src="@drawable/hamburger"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/ib_menu_pf"
+            android:layout_margin="10dp"
+            android:background="@android:drawable/screen_background_light_transparent"
+            android:layout_gravity="left|center_vertical"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="MY PROFILE"
+            android:textColor="@color/background"
+            android:layout_margin="10dp"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:layout_gravity="center_horizontal"/>
+
+
+        <ImageButton
+            android:src="@drawable/edit_profile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/ib_edit_pf"
+            android:layout_margin="10dp"
+            android:background="@android:drawable/screen_background_light_transparent"
+            android:layout_gravity="right|center_vertical"/>
+
+    </androidx.cardview.widget.CardView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="110dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <androidx.cardview.widget.CardView
+            android:layout_marginTop="5dp"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            app:cardPreventCornerOverlap="false"
+            app:cardCornerRadius="50dp"
+            android:layout_gravity="clip_vertical"
+            android:elevation="8dp"
+            app:cardElevation="10dp">
+
+            <ImageView
+                android:id="@+id/iv_pf"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/ic_baseline_person_24"
+                android:clickable="true"
+                android:scaleType="centerCrop" />
+        </androidx.cardview.widget.CardView>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="42dp"
+                android:id="@+id/tv_name_pf"
+                android:layout_marginBottom="2dp"
+                android:text="No Profile"
+                android:paddingLeft="15dp"
+                android:textAlignment="viewStart"
+                android:textColor="@color/background"
+                android:gravity="start"
+                android:textStyle="bold"
+                android:textSize="17sp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/tv_prof_pf"
+                android:layout_marginBottom="2dp"
+                android:paddingLeft="15dp"
+                android:text="No Profession"
+                android:textAlignment="viewStart"
+                android:textColor="@color/background"
+                android:gravity="start"
+                android:textSize="15sp"
+                />
+        </LinearLayout>
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="50dp">
+        <TextView
+            android:id="@+id/tv_bio_pf"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+            android:padding="5dp"
+            android:paddingStart="10sp"
+            android:textColor="@color/background"
+            android:text="You don't have created profile till now."/>
+    </ScrollView>
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="1.5dp"
+        android:src="@drawable/line"/>
+
+
+
+
+
+</LinearLayout>

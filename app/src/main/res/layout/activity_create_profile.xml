@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activity.CreateProfileActivity"
+    android:orientation="vertical"
+    android:layout_marginTop="40dp"
+    android:gravity="center_horizontal">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Create Profile"
+        android:textColor="@color/background"
+        android:textStyle="bold"
+        android:textSize="24sp"
+        android:textAlignment="center"
+        android:gravity="center_horizontal"
+        android:layout_margin="10dp"
+        android:fontFamily="sans-serif-black"/>
+
+    <androidx.cardview.widget.CardView
+        android:layout_marginTop="20dp"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        app:cardPreventCornerOverlap="false"
+        app:cardCornerRadius="75dp"
+        android:layout_marginBottom="30dp">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/iv_pp"
+            android:scaleType="centerCrop"
+            android:background="@drawable/ic_baseline_person_24"
+            android:clickable="true"/>
+    </androidx.cardview.widget.CardView>
+
+    <EditText
+        android:background="@drawable/input_outline"
+        android:paddingStart="4dp"
+        android:layout_width="380dp"
+        android:layout_height="45dp"
+        android:hint="Name"
+        android:id="@+id/et_name_pp"
+        android:layout_margin="4dp"
+        android:textColor="@android:color/black"/>
+    <EditText
+        android:background="@drawable/input_outline"
+        android:paddingStart="4dp"
+        android:layout_width="380dp"
+        android:layout_height="45dp"
+        android:hint="Profession"
+        android:id="@+id/et_profession_cp"
+        android:layout_margin="4dp"
+        android:textColor="@android:color/black"/>
+    <EditText
+        android:background="@drawable/input_outline"
+        android:paddingStart="4dp"
+        android:layout_width="380dp"
+        android:layout_height="150dp"
+        android:hint="Don't think too much, just write about yourself!"
+        android:inputType="textMultiLine"
+        android:id="@+id/et_bio_cp"
+        android:layout_margin="4dp"
+        android:gravity="start"
+        android:textColor="@android:color/black"/>
+    <Button
+        android:layout_width="300dp"
+        android:textStyle="bold"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn_cp"
+        android:background="@drawable/text_selected"
+        android:textColor="@color/white"
+        android:text="Save profile"
+        android:layout_marginTop="10dp"
+        />
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/progressbar_cp"
+        android:layout_marginTop="10dp"
+        android:visibility="invisible"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/alreadyProfile"
+        android:textColor="@color/background"
+        android:gravity="center"
+        android:textSize="16sp"
+        android:layout_marginTop="5dp"
+
+        />
+
+
+</LinearLayout>
