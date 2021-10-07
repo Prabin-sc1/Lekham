@@ -1,14 +1,110 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".Fragment.AddPostFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+    <LinearLayout
+            android:background="@color/background"
+            android:id="@+id/linearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal"
+            android:paddingTop="3dp">
 
-</FrameLayout>
+
+            <ImageButton
+                android:id="@+id/ib_menu_pf"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingStart="10dp"
+                android:layout_gravity="left|center_vertical"
+                android:background="@color/background"
+                android:src="@drawable/hamburger" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Post Blog"
+                android:textColor="@color/white"
+                android:layout_gravity="center"
+                android:layout_marginLeft="20dp"
+                android:textSize="20sp"
+                />
+    </LinearLayout>
+
+
+    <ImageView
+                android:layout_gravity="center"
+                android:id="@+id/imageButton"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="14dp"
+                android:layout_marginEnd="8dp"
+                android:src="@mipmap/add_btn"
+                android:scaleType="centerCrop"
+                />
+
+
+
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/postTitleET"
+            android:layout_margin="4dp"
+            android:background="@drawable/post_write"
+            android:layout_width="match_parent"
+            android:layout_height="43dp"
+            android:hint="Post Title"
+            android:textColorHint="@color/white"
+            android:inputType="text"
+            android:paddingLeft="5dp"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        >
+        <com.google.android.material.textfield.TextInputEditText
+            android:paddingTop="5dp"
+            android:id="@+id/postDescriptionET"
+            android:background="@drawable/post_write"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:hint="Post Description"
+            android:textColorHint="@color/white"
+            android:inputType="textMultiLine"
+            android:layout_gravity="start"
+            android:gravity="start"
+            android:layout_margin="4dp"
+            android:paddingLeft="5dp"
+            android:fontFamily="serif"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+            <Button
+                android:layout_gravity="center"
+                android:id="@+id/postBtn"
+                android:layout_width="290dp"
+                android:layout_height="44dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginEnd="24dp"
+                android:layout_marginTop="35dp"
+                android:background="@drawable/save_update_profile"
+                android:gravity="center"
+                android:text="@string/post"
+                android:textColor="@color/background"
+                android:textStyle="bold"/>
+
+
+</LinearLayout>

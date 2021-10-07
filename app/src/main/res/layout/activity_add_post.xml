@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+    <androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".Activity.AddPostActivity"
+        android:orientation="vertical">
+
+    <ImageView
+            android:layout_gravity="center"
+            android:id="@+id/imageButton"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="14dp"
+            android:layout_marginEnd="8dp"
+            app:srcCompat="@mipmap/add_btn"
+            android:scaleType="centerCrop"
+          />
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/postTitleET"
+            android:layout_margin="4dp"
+            android:background="@drawable/post_write"
+            android:layout_width="match_parent"
+            android:layout_height="43dp"
+            android:hint="Post Title"
+            android:textColorHint="@color/white"
+            android:inputType="text"
+            android:paddingLeft="5dp"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        >
+        <com.google.android.material.textfield.TextInputEditText
+            android:paddingTop="5dp"
+            android:id="@+id/postDescriptionET"
+            android:background="@drawable/post_write"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:hint="Post Description"
+            android:textColorHint="@color/white"
+            android:inputType="textMultiLine"
+            android:layout_gravity="start"
+            android:gravity="start"
+            android:layout_margin="4dp"
+            android:paddingLeft="5dp"
+            android:fontFamily="serif"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <Button
+            android:layout_gravity="center"
+            android:id="@+id/postBtn"
+            android:layout_width="270dp"
+            android:layout_height="44dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginTop="35dp"
+            android:background="@drawable/save_update_profile"
+            android:gravity="center"
+            android:text="@string/post"
+            android:textColor="@color/background"
+            android:textStyle="bold"/>
+
+</androidx.appcompat.widget.LinearLayoutCompat>
+

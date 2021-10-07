@@ -7,6 +7,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -25,6 +26,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.lekham.blog.app.np.Activity.Adapter.HomeAdapter;
+import com.lekham.blog.app.np.Activity.Adapter.SearchFragmentAdapter;
 import com.lekham.blog.app.np.Activity.LoginActivity;
 import com.lekham.blog.app.np.Model.Blog;
 import com.lekham.blog.app.np.R;
@@ -36,15 +38,15 @@ import org.jetbrains.annotations.NotNull;
  * Use the {@link HomeFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class HomeFragment extends Fragment {
+public class SearchFragment extends Fragment {
     private DatabaseReference mDatabaseReference;
     private FirebaseUser mUser;
     private FirebaseAuth mAuth;
     private RecyclerView recyclerView;
-    private HomeAdapter adapter;
+    private SearchFragmentAdapter adapter;
+    EditText searchtxt;
+    ImageView search;
     LinearLayoutManager mLayoutManager;
-//    EditText searchtxt;
-//    ImageView search;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -55,7 +57,7 @@ public class HomeFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public HomeFragment() {
+    public SearchFragment() {
         // Required empty public constructor
     }
 
@@ -68,8 +70,8 @@ public class HomeFragment extends Fragment {
      * @return A new instance of fragment HomeFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static HomeFragment newInstance(String param1, String param2) {
-        HomeFragment fragment = new HomeFragment();
+    public static SearchFragment newInstance(String param1, String param2) {
+        SearchFragment fragment = new SearchFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -88,38 +90,49 @@ public class HomeFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-//        search = getActivity().findViewById(R.id.searchBlogId);
-
-//        searchtxt = getActivity().findViewById(R.id.search_txt);
-//        search = getActivity().findViewById(R.id.search);
+        searchtxt = getActivity().findViewById(R.id.search_txt);
+        search = getActivity().findViewById(R.id.search);
         mAuth = FirebaseAuth.getInstance();
         mUser = mAuth.getCurrentUser();
 
         FirebaseDatabase mDatabase = FirebaseDatabase.getInstance();
         mDatabaseReference = mDatabase.getReference().child("PBlog");
         mDatabaseReference.keepSynced(true);
-
         mLayoutManager = new LinearLayoutManager(getActivity());
-        mLayoutManager.setStackFromEnd(true);
-        mLayoutManager.setReverseLayout(true);
-
-        recyclerView = getActivity().findViewById(R.id.homeRecyclerView);
+        recyclerView = getActivity().findViewById(R.id.searchRecView);
         recyclerView.setLayoutManager(mLayoutManager);
-//        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
 
         FirebaseRecyclerOptions<Blog> options =
                 new FirebaseRecyclerOptions.Builder<Blog>()
                         .setQuery(FirebaseDatabase.getInstance().getReference().child("PBlog"), Blog.class)
                         .build();
-        adapter = new HomeAdapter(options);
+        adapter = new SearchFragmentAdapter(options);
+        recyclerView.setAdapter(adapter);
+        search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                searchProcess();
+            }
+        });
+    }
+    String search_txt = "";
+    private void searchProcess() {
+        search_txt = searchtxt.getText().toString().trim();
+        FirebaseRecyclerOptions<Blog> options =
+                new FirebaseRecyclerOptions.Builder<Blog>()
+                        .setQuery(FirebaseDatabase.getInstance().getReference().child("PBlog").orderByChild("title").startAt(search_txt).endAt(search_txt+"\uf8ff"), Blog.class)
+                        .build();
+        adapter = new SearchFragmentAdapter(options);
+        adapter.startListening();
         recyclerView.setAdapter(adapter);
     }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home, container, false);
+        return inflater.inflate(R.layout.fragment_search, container, false);
     }
 
     @Override

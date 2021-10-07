@@ -9,6 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Lekham">
+        <activity
+            android:name=".Activity.AddPostActivity"
+            android:label="@string/post_blog" />
+        <activity android:name=".Activity.UpdateProfileActivity"></activity>
         <activity android:name=".Activity.AllFragmentActivity"></activity>
 
         <activity android:name=".Activity.ForgotActivity" />

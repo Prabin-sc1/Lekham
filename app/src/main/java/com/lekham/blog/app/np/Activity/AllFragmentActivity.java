@@ -20,6 +20,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.lekham.blog.app.np.Fragment.AddPostFragment;
 import com.lekham.blog.app.np.Fragment.HomeFragment;
 import com.lekham.blog.app.np.Fragment.ProfileFragment;
+import com.lekham.blog.app.np.Fragment.SearchFragment;
 import com.lekham.blog.app.np.Fragment.SettingFragment;
 import com.lekham.blog.app.np.R;
 
@@ -33,9 +34,9 @@ public class AllFragmentActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        requestWindowFeature(Window.FEATURE_NO_TITLE);
-//        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-//        getSupportActionBar().hide();
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        getSupportActionBar().hide();
         setContentView(R.layout.activity_all_fragment);
 
         mAuth = FirebaseAuth.getInstance();
@@ -60,7 +61,14 @@ public class AllFragmentActivity extends AppCompatActivity {
                         break;
                     case R.id.setting:
                         temp = new SettingFragment();
+                        break;
+                    case R.id.searchh:
+                        temp = new SearchFragment();
+                        break;
+                    default:
+                        throw new IllegalStateException("Unexpected value: " + item.getItemId());
                 }
+
                 getSupportFragmentManager().beginTransaction().replace(R.id.frameContainer, temp).commit();
                 return true;
             }
@@ -85,7 +93,6 @@ public class AllFragmentActivity extends AppCompatActivity {
                 }
                 break;
         }
-
         return super.onOptionsItemSelected(item);
     }
 }

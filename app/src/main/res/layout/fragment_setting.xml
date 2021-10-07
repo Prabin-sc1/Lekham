@@ -3,12 +3,62 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".Fragment.SettingFragment">
-
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
+        android:background="@color/background"
+        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:paddingTop="3dp">
 
+
+        <ImageButton
+            android:id="@+id/ib_menu_pf"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="10dp"
+            android:layout_gravity="left|center_vertical"
+            android:background="@color/background"
+            android:src="@drawable/hamburger" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Setting"
+            android:textColor="@color/white"
+            android:layout_gravity="center"
+            android:layout_marginLeft="20dp"
+            android:textSize="20sp"
+            />
+    </LinearLayout>
+
+
+
+    <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center">
+    <Button
+        android:id="@+id/darkModeBtn"
+        android:layout_width="400dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_marginBottom="25dp"
+        android:background="@color/background"
+        android:text="Enable Dark mode"
+        android:textColor="@color/white" />
+
+    <Button
+        android:id="@+id/signout"
+        android:layout_width="400dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_marginBottom="25dp"
+        android:background="@color/background"
+        android:text="Signout"
+        android:textColor="@color/white" />
+</LinearLayout>
 </FrameLayout>
