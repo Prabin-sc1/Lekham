@@ -71,7 +71,6 @@ public class CreateProfileActivity extends AppCompatActivity {
         setContentView(R.layout.activity_create_profile);
 
 
-
         already = findViewById(R.id.alreadyProfile);
         already.setText(Html.fromHtml("<u>Already have a profile?</u>"));
         already.setOnClickListener(new View.OnClickListener() {
@@ -90,10 +89,13 @@ public class CreateProfileActivity extends AppCompatActivity {
         progressBar = findViewById(R.id.progressbar_cp);
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-//        if(user != null){
+
+//
+//        if(  != null){
 //            startActivity(new Intent(CreateProfileActivity.this, AllFragmentActivity.class));
 //            finish();
 //        }
+
 
         currentUserId = user.getUid();
 
@@ -111,7 +113,6 @@ public class CreateProfileActivity extends AppCompatActivity {
         profilePicture.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 Intent intent = new Intent();
                 intent.setType("image/*");
                 intent.setAction(Intent.ACTION_GET_CONTENT);
@@ -192,7 +193,6 @@ public class CreateProfileActivity extends AppCompatActivity {
                                         startActivity(intent);
                                     }
                                 },500);
-
                             }
                         });
                     }
@@ -201,7 +201,7 @@ public class CreateProfileActivity extends AppCompatActivity {
         }else {
             Toast.makeText(this, "Please fill all the fields properly!", Toast.LENGTH_SHORT).show();
         }
-
     }
+
 
 }

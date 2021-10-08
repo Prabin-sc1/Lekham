@@ -2,43 +2,40 @@ package com.lekham.blog.app.np.Fragment;
 
 import android.os.Bundle;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.lekham.blog.app.np.R;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link ElaborateFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+
 public class ElaborateFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
+
     private String mParam1;
     private String mParam2;
+    private String title, description, image;
 
     public ElaborateFragment() {
-        // Required empty public constructor
+
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment ElaborateFragment.
-     */
-    // TODO: Rename and change types and number of parameters
+    public ElaborateFragment(String title, String description, String image) {
+        this.title = title;
+        this.description = description;
+        this.image = image;
+    }
+
+
     public static ElaborateFragment newInstance(String param1, String param2) {
         ElaborateFragment fragment = new ElaborateFragment();
         Bundle args = new Bundle();
@@ -61,6 +58,21 @@ public class ElaborateFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_elaborate, container, false);
+        View view =  inflater.inflate(R.layout.fragment_elaborate, container, false);
+        ImageView imageholder = view.findViewById(R.id.ea_imageview);
+        TextView titleholder = view.findViewById(R.id.ea_title);
+        TextView descholder = view.findViewById(R.id.ea_description);
+
+        titleholder.setText(title);
+        descholder.setText(description);
+
+        Glide.with(getContext()).load(image).into(imageholder);
+
+        return view;
+    }
+    public void onBackPressed(){
+        AppCompatActivity activity = (AppCompatActivity)getContext();
+        activity.getSupportFragmentManager().beginTransaction().replace(R.id.frameContainer, new HomeFragment())
+                .addToBackStack(null).commit();
     }
 }

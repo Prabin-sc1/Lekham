@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -19,6 +20,7 @@ import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.FirebaseDatabase;
+import com.lekham.blog.app.np.Fragment.ElaborateFragment;
 import com.lekham.blog.app.np.Model.Blog;
 import com.lekham.blog.app.np.R;
 import com.orhanobut.dialogplus.DialogPlus;
@@ -48,6 +50,15 @@ public class SearchFragmentAdapter extends FirebaseRecyclerAdapter<Blog, SearchF
         holder.timestamp.setText(formattedDate);
         String imageUrl = blog.getImage();
         Glide.with(holder.imageView.getContext()).load(imageUrl).into(holder.imageView);
+        holder.imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AppCompatActivity activity = (AppCompatActivity)v.getContext();
+                activity.getSupportFragmentManager().beginTransaction().replace(R.id.frameContainer, new ElaborateFragment(blog.getTitle(),blog.getDescription(),blog.getImage()))
+                        .addToBackStack(null).commit();
+
+            }
+        });
 
     }
 

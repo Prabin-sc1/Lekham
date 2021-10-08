@@ -50,8 +50,9 @@ public class AllFragmentActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 Fragment temp = null;
                 switch (item.getItemId()) {
-                    case R.id.home:
-                        temp = new HomeFragment();
+
+                    case R.id.searchh:
+                        temp = new SearchFragment();
                         break;
                     case R.id.add:
                         temp = new AddPostFragment();
@@ -62,9 +63,10 @@ public class AllFragmentActivity extends AppCompatActivity {
                     case R.id.setting:
                         temp = new SettingFragment();
                         break;
-                    case R.id.searchh:
-                        temp = new SearchFragment();
+                    case R.id.home:
+                        temp = new HomeFragment();
                         break;
+
                     default:
                         throw new IllegalStateException("Unexpected value: " + item.getItemId());
                 }
@@ -73,26 +75,6 @@ public class AllFragmentActivity extends AppCompatActivity {
                 return true;
             }
         });
+    }
 
-
-    }
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.list_main_menu, menu);
-        return super.onCreateOptionsMenu(menu);
-    }
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.action_signout:
-                if (mUser != null && mAuth != null) {
-                    FirebaseAuth.getInstance().signOut();
-                    startActivity(new Intent(AllFragmentActivity.this, LoginActivity.class));
-                    finish();
-                }
-                break;
-        }
-        return super.onOptionsItemSelected(item);
-    }
 }

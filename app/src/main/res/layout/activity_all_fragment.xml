@@ -10,7 +10,8 @@
         android:layout_height="match_parent"
         android:id="@+id/frameContainer"
         android:layout_above="@+id/bottomNavigationId"
-        android:background="@color/white"/>
+        android:background="@color/white"
+        />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:layout_width="match_parent"
