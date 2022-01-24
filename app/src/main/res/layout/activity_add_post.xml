@@ -13,7 +13,7 @@
             android:layout_gravity="center"
             android:id="@+id/imageButton"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="250dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="14dp"
             android:layout_marginEnd="8dp"

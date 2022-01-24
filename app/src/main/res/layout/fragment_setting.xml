@@ -13,7 +13,6 @@
         android:orientation="horizontal"
         android:paddingTop="3dp">
 
-
         <ImageButton
             android:id="@+id/ib_menu_pf"
             android:layout_width="wrap_content"
@@ -42,23 +41,14 @@
     android:orientation="vertical"
     android:gravity="center">
     <Button
+        android:layout_marginTop="150dp"
         android:id="@+id/darkModeBtn"
-        android:layout_width="400dp"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        android:layout_marginBottom="25dp"
-        android:background="@color/background"
+        android:gravity="center"
+        android:background="@drawable/save_update_profile"
         android:text="Enable Dark mode"
-        android:textColor="@color/white" />
+        android:textColor="@color/background" />
 
-    <Button
-        android:id="@+id/signout"
-        android:layout_width="400dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        android:layout_marginBottom="25dp"
-        android:background="@color/background"
-        android:text="Signout"
-        android:textColor="@color/white" />
 </LinearLayout>
 </FrameLayout>

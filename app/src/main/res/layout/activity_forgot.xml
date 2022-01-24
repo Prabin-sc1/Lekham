@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ForgotActivity">
+    tools:context=".Activity.ForgotActivity">
 
     <ImageView
         android:id="@+id/imageView"
@@ -35,14 +35,15 @@
         android:layout_width="170dp"
         android:layout_height="47dp"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="35dp"
         android:layout_marginBottom="24dp"
+        android:layout_marginTop="50dp"
         android:background="@drawable/text_selected"
         android:text="Reset Password"
         android:textColor="@color/white"
         app:layout_constraintBottom_toTopOf="@+id/progressBarId"
         app:layout_constraintEnd_toStartOf="@+id/returnId"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout" />
 
     <TextView
         android:id="@+id/returnTV"
@@ -160,6 +161,7 @@
         app:layout_constraintVertical_bias="0.411" />
 
     <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout"
         android:layout_width="350dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="360dp"
@@ -172,7 +174,7 @@
             android:layout_width="350dp"
             android:layout_height="wrap_content"
             android:hint="Enter email"
-            android:textColorHint="@color/white"
-            android:inputType="textEmailAddress"/>
+            android:inputType="textEmailAddress"
+            android:textColorHint="@color/white" />
     </com.google.android.material.textfield.TextInputLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

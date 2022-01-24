@@ -15,10 +15,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.drawerlayout.widget.DrawerLayout;
+
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -37,12 +35,10 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.annotations.NotNull;
+import com.lekham.blog.app.np.Model.AllUserMember;
 import com.lekham.blog.app.np.R;
 
 public class LoginActivity extends AppCompatActivity {
-    NavigationView nav;
-    ActionBarDrawerToggle toggle;
-    DrawerLayout drawerLayout;
 
 
     private static final int RC_SIGN_IN = 101;
@@ -57,7 +53,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private FirebaseAuth.AuthStateListener mAuthStateListener;
     GoogleSignInClient mGoogleSignInClient;
-    SignInButton googleImg;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,25 +65,6 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         FirebaseDatabase.getInstance().getReference("message").setValue("aple");
 
-        Toolbar toolbar = findViewById(R.id.toolbar);
-
-        nav = findViewById(R.id.navmenu);
-        drawerLayout = findViewById(R.id.drawer);
-
-        toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.start, R.string.end);
-        drawerLayout.addDrawerListener(toggle);
-        toggle.syncState();
-        nav.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(MenuItem menuItem) {
-
-                switch (menuItem.getItemId()) {
-
-
-                }
-                return true;
-            }
-        });
 
 
         forgot = findViewById(R.id.forgotId);
@@ -103,7 +80,7 @@ public class LoginActivity extends AppCompatActivity {
 
         mAuthStateListener = new FirebaseAuth.AuthStateListener() {
             @Override
-            public void onAuthStateChanged(@NonNull @NotNull FirebaseAuth firebaseAuth) {
+            public void onAuthStateChanged( @NotNull FirebaseAuth firebaseAuth) {
                 FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
                 if (firebaseUser != null) {
                     //databaseReference.push().setValue("apple");
@@ -117,25 +94,6 @@ public class LoginActivity extends AppCompatActivity {
             }
         };
 
-
-        googleImg = findViewById(R.id.signInWithGoogleId);
-
-        //signing with google process
-        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestIdToken(getString(R.string.default_web_client_id))
-                .requestEmail()
-                .build();
-
-        mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
-
-
-        //end
-        googleImg.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                signIn();
-            }
-        });
 
 
         register.setOnClickListener(new View.OnClickListener() {
@@ -159,8 +117,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onAuthStateChanged(FirebaseAuth firebaseAuth) {
                 mUser = firebaseAuth.getCurrentUser();
-
-                if (mUser != null) {
+                if (mUser != null ) {
                     Toast.makeText(LoginActivity.this, "Signed In", Toast.LENGTH_SHORT).show();
                     startActivity(new Intent(LoginActivity.this, CreateProfileActivity.class));
                     finish();
@@ -241,55 +198,6 @@ public class LoginActivity extends AppCompatActivity {
             finish();
 
         }
-    }
-
-    private void signIn() {
-        Intent signInIntent = mGoogleSignInClient.getSignInIntent();
-        startActivityForResult(signInIntent, RC_SIGN_IN);
-    }
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-
-        super.onActivityResult(requestCode, resultCode, data);
-
-        // Result returned from launching the Intent from GoogleSignInApi.getSignInIntent(...);
-        if (requestCode == RC_SIGN_IN) {
-            Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
-            try {
-                // Google Sign In was successful, authenticate with Firebase
-                GoogleSignInAccount account = task.getResult(ApiException.class);
-                Log.d("TAG", "firebaseAuthWithGoogle:" + account.getId());
-                firebaseAuthWithGoogle(account.getIdToken());
-            } catch (ApiException e) {
-                // Google Sign In failed, update UI appropriately
-                Log.w("TAG", "Google sign in failed", e);
-            }
-        }
-    }
-
-    private void firebaseAuthWithGoogle(String idToken) {
-        AuthCredential credential = GoogleAuthProvider.getCredential(idToken, null);
-        mAuth.signInWithCredential(credential)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
-                            Log.d("TAG", "signInWithCredential:success");
-                            FirebaseUser user = mAuth.getCurrentUser();
-                            startActivity(new Intent(LoginActivity.this, CreateProfileActivity.class));
-                            finish();
-                            Toast.makeText(getApplicationContext(), "Signed in with google", Toast.LENGTH_SHORT).show();
-                            updateUI(user);
-
-                        } else {
-                            // If sign in fails, display a message to the user.
-                            Log.w("TAG", "signInWithCredential:failure", task.getException());
-                            updateUI(null);
-                        }
-                    }
-                });
     }
 
 

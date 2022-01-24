@@ -55,7 +55,6 @@ public class AddPostActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == GALLERY_CODE && resultCode == RESULT_OK) {
             mImageUri = data.getData();
-
             mPostImage.setImageURI(mImageUri);
         }
     }

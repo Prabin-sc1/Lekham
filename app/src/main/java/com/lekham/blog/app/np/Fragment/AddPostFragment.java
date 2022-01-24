@@ -1,7 +1,9 @@
 package com.lekham.blog.app.np.Fragment;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -9,7 +11,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.provider.MediaStore;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -17,6 +21,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -30,17 +35,22 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.lekham.blog.app.np.Activity.AddPostActivity;
+import com.lekham.blog.app.np.Activity.AllFragmentActivity;
 import com.lekham.blog.app.np.R;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+
+import static android.app.Activity.RESULT_OK;
 
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link AddPostFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class AddPostFragment extends Fragment {
+public class AddPostFragment extends Fragment implements View.OnClickListener {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -62,25 +72,16 @@ public class AddPostFragment extends Fragment {
     private static final int GALLERY_CODE = 1;
     private StorageReference mStorage;
 
+    private ImageButton back;
 
     GoogleSignInClient mGoogleSignInClient;
     private FirebaseAuth.AuthStateListener mAuthStateListener;
-
 
 
     public AddPostFragment() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment AddPostFragment.
-     */
-    // TODO: Rename and change types and number of parameters
     public static AddPostFragment newInstance(String param1, String param2) {
         AddPostFragment fragment = new AddPostFragment();
         Bundle args = new Bundle();
@@ -100,6 +101,16 @@ public class AddPostFragment extends Fragment {
     }
 
     @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == GALLERY_CODE && resultCode == RESULT_OK) {
+            mImageUri = data.getData();
+            mPostImage.setImageURI(mImageUri);
+        }
+    }
+
+
+    @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         mProgressDialog = new ProgressDialog(getActivity());
@@ -110,45 +121,38 @@ public class AddPostFragment extends Fragment {
 
         mPostDatabase = FirebaseDatabase.getInstance().getReference().child("PBlog");
 
-        mPostImage = getActivity().findViewById(R.id.imageButton);
+        mPostImage = getActivity().findViewById(R.id.addImg);
         mPostTitle = getActivity().findViewById(R.id.postTitleET);
         mPostDesc = getActivity().findViewById(R.id.postDescriptionET);
         mSubmitButton = getActivity().findViewById(R.id.postBtn);
 
+        back = getActivity().findViewById(R.id.backButton);
+
+        back.setOnClickListener(this);
+
+
+
+
         mPostImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent galleryIntent = new Intent(Intent.ACTION_GET_CONTENT);
+                Intent galleryIntent = new Intent(Intent.ACTION_PICK);
                 galleryIntent.setType("image/*");
                 startActivityForResult(galleryIntent, GALLERY_CODE);
             }
-        });
 
+        });
 
         mSubmitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //THis is where we putting to database
                 startPosting();
+//                startActivity(new Intent(getActivity(), HomeFragment.class));
             }
         });
     }
 
-//    @Override
-//    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-//        if (item.getItemId() == R.id.action_back) {
-//            startActivity(new Intent(ge, BlogListActivity.class));
-//            finish();
-//        }
-//        return super.onOptionsItemSelected(item);
-//
-//    }
-//
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        getMenuInflater().inflate(R.menu.main_menu, menu);
-//        return super.onCreateOptionsMenu(menu);
-//    }
 
 
     private void startPosting() {
@@ -186,9 +190,7 @@ public class AddPostFragment extends Fragment {
 
                                     newPost.setValue(dataToSave);
                                     mProgressDialog.dismiss();
-//                                    startActivity(new Intent(AddPostActivity.this, BlogListActivity.class));
-//                                    finish();
-
+                                    startActivity(new Intent(getActivity(), AllFragmentActivity.class));
                                 }
                             });
                         }
@@ -206,5 +208,12 @@ public class AddPostFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_add_post, container, false);
+    }
+
+    @Override
+    public void onClick(View v) {
+        if(v.getId() == R.id.backButton){
+            startActivity(new Intent(getActivity(), AllFragmentActivity.class));
+        }
     }
 }

@@ -17,6 +17,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 
 import com.firebase.ui.database.FirebaseRecyclerOptions;
@@ -26,21 +27,21 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.lekham.blog.app.np.Activity.Adapter.HomeAdapter;
 import com.lekham.blog.app.np.Activity.LoginActivity;
+import com.lekham.blog.app.np.Activity.UpdateProfileActivity;
 import com.lekham.blog.app.np.Model.Blog;
 import com.lekham.blog.app.np.R;
 
 import org.jetbrains.annotations.NotNull;
 
 
-public class HomeFragment extends Fragment {
+public class HomeFragment extends Fragment implements View.OnClickListener{
     private DatabaseReference mDatabaseReference;
     private FirebaseUser mUser;
     private FirebaseAuth mAuth;
     private RecyclerView recyclerView;
     private HomeAdapter adapter;
     LinearLayoutManager mLayoutManager;
-//    EditText searchtxt;
-//    ImageView search;
+    ImageButton ib_signout;
 
 
     private static final String ARG_PARAM1 = "param1";
@@ -75,10 +76,6 @@ public class HomeFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-//        search = getActivity().findViewById(R.id.searchBlogId);
-
-//        searchtxt = getActivity().findViewById(R.id.search_txt);
-//        search = getActivity().findViewById(R.id.search);
         mAuth = FirebaseAuth.getInstance();
         mUser = mAuth.getCurrentUser();
 
@@ -92,7 +89,9 @@ public class HomeFragment extends Fragment {
 
         recyclerView = getActivity().findViewById(R.id.homeRecyclerView);
         recyclerView.setLayoutManager(mLayoutManager);
-//        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+
+        ib_signout = getActivity().findViewById(R.id.ibSignout);
+        ib_signout.setOnClickListener(this);
 
 
         FirebaseRecyclerOptions<Blog> options =
@@ -107,6 +106,18 @@ public class HomeFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_home, container, false);
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.ibSignout:
+                if (mUser != null && mAuth != null) {
+                    FirebaseAuth.getInstance().signOut();
+                    startActivity(new Intent(getActivity(), LoginActivity.class));
+                    break;
+                }
+        }
     }
 
     @Override

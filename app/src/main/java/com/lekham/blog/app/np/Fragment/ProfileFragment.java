@@ -5,11 +5,17 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
@@ -22,6 +28,7 @@ import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
@@ -32,6 +39,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.lekham.blog.app.np.Activity.Adapter.ProfileAdapter;
 import com.lekham.blog.app.np.Activity.AddPostActivity;
 import com.lekham.blog.app.np.Activity.CreateProfileActivity;
+import com.lekham.blog.app.np.Activity.LoginActivity;
 import com.lekham.blog.app.np.Activity.UpdateProfileActivity;
 import com.lekham.blog.app.np.Model.Blog;
 import com.lekham.blog.app.np.R;
@@ -39,6 +47,7 @@ import com.squareup.picasso.Picasso;
 
 
 public class ProfileFragment extends Fragment implements View.OnClickListener{
+
     ImageView imageView;
     TextView nameEt, profEt, bioEt;
     RecyclerView profRecyclerView;
@@ -82,9 +91,6 @@ public class ProfileFragment extends Fragment implements View.OnClickListener{
         mUser = mAuth.getCurrentUser();
 
 
-
-
-
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
@@ -97,6 +103,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener{
         recyclerView = getActivity().findViewById(R.id.profRecViewId);
         mAuth = FirebaseAuth.getInstance();
         FirebaseDatabase mDatabase = FirebaseDatabase.getInstance();
+
         mDatabaseReference = mDatabase.getReference().child("PBlog");
         mDatabaseReference.keepSynced(true);
 
@@ -122,7 +129,8 @@ public class ProfileFragment extends Fragment implements View.OnClickListener{
         profEt = getActivity().findViewById(R.id.tv_prof_pf);
         ib_edit = getActivity().findViewById(R.id.ib_edit_pf);
         ib_edit.setOnClickListener(this);
-//        profRecyclerView = getActivity().findViewById(R.id.profRecViewId);
+
+
 
         floatingActionButton = getActivity().findViewById(R.id.floatingActionButtonProfile);
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
@@ -149,10 +157,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener{
             case R.id.ib_edit_pf:
                 startActivity(new Intent(getActivity(), UpdateProfileActivity.class));
                 break;
-            case R.id.ib_menu_pf:
-
         }
-
     }
 
     @Override

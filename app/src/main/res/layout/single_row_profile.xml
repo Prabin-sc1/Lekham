@@ -3,20 +3,75 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_margin="5dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardView2"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                app:cardCornerRadius="75dp"
+                app:cardPreventCornerOverlap="false"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <ImageView
+
+                    android:id="@+id/iv_pp_home"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/ic_baseline_person_24"
+                    android:clickable="true"
+                    android:scaleType="centerCrop" />
+            </androidx.cardview.widget.CardView>
+
+
+            <TextView
+                android:id="@+id/name"
+                android:layout_width="wrap_content"
+                android:layout_height="25dp"
+                android:layout_marginLeft="7dp"
+                android:text="Name"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:textStyle="italic"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@+id/cardView2"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/timestampList"
+                android:layout_width="wrap_content"
+                android:layout_height="20sp"
+                android:layout_marginLeft="5dp"
+                android:text="@string/date_created"
+                android:textColor="@color/black"
+                android:textSize="15sp"
+                android:textStyle="italic"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.025"
+                app:layout_constraintStart_toStartOf="@+id/name"
+                app:layout_constraintTop_toBottomOf="@+id/name" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
         <ImageView
             android:id="@+id/imageViewList"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
             android:adjustViewBounds="true"
             android:cropToPadding="false"
             android:scaleType="centerCrop"
-            android:layout_width="match_parent"
-            android:layout_height="250dp"
             app:srcCompat="@mipmap/add_btn" />
 
         <TextView
@@ -45,17 +100,6 @@
             android:text="@string/post_descriptionn"
             android:textColor="@color/black"
             android:textSize="18sp"/>
-
-        <TextView
-            android:id="@+id/timestampList"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="5dp"
-            android:text="@string/date_created"
-            android:textColor="@color/black"
-            android:textSize="18sp"
-            android:textStyle="italic" />
-
     </LinearLayout>
 
 

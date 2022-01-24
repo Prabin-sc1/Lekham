@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".Fragment.HomeFragment">
 
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -39,65 +38,15 @@
                 android:textSize="20sp"
                 />
 
-<!--            <EditText-->
-<!--                android:layout_marginLeft="40dp"-->
-<!--                android:id="@+id/search_txt"-->
-<!--                android:layout_width="250dp"-->
-<!--                android:layout_height="45dp"-->
-<!--                android:layout_gravity="center"-->
-<!--                android:background="@drawable/search"-->
-<!--                android:gravity="left|center"-->
-<!--                android:hint="Search blog"-->
-<!--                android:inputType="text"-->
-<!--                android:paddingStart="30dp"-->
-<!--                android:paddingTop="5dp"-->
-<!--                android:textColor="@color/white"-->
-<!--                android:textColorHint="@color/grey" />-->
-
-<!--            <ImageView-->
-<!--                android:id="@+id/search"-->
-<!--                android:layout_width="50dp"-->
-<!--                android:layout_height="50dp"-->
-<!--                android:paddingStart="20dp"-->
-<!--                android:src="@drawable/ic_baseline_search_24" />-->
+            <ImageButton
+                android:src="@drawable/ic_logout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/ibSignout"
+                android:background="@color/background"
+                android:layout_marginLeft="240dp"
+                android:layout_gravity="center"/>
         </LinearLayout>
-
-<!--        <androidx.cardview.widget.CardView-->
-<!--            android:id="@+id/cardView2"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="45dp"-->
-<!--            app:cardBackgroundColor="@color/white"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintTop_toTopOf="parent">-->
-
-
-<!--            <ImageButton-->
-<!--                android:id="@+id/ib_menu_pf"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_gravity="left|center_vertical"-->
-<!--                android:layout_margin="10dp"-->
-<!--                android:background="@android:drawable/screen_background_light_transparent"-->
-<!--                android:src="@drawable/hamburger" />-->
-
-<!--            <EditText-->
-<!--                android:drawableStart="@drawable/ic_baseline_search_24"-->
-<!--                android:drawablePadding="5dp"-->
-<!--                android:paddingStart="20dp"-->
-<!--                android:layout_width="250dp"-->
-<!--                android:layout_height="40dp"-->
-<!--                android:layout_gravity="center_horizontal"-->
-<!--                android:layout_margin="5dp"-->
-<!--                android:hint="Search blog"-->
-<!--                android:textColorHint="@color/background"-->
-<!--                android:textColor="@color/background"-->
-<!--                android:textSize="17sp"-->
-<!--                android:gravity="left|center"-->
-<!--                android:background="@drawable/search"/>-->
-
-<!--        </androidx.cardview.widget.CardView>-->
-
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/homeRecyclerView"
@@ -108,8 +57,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
-
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 

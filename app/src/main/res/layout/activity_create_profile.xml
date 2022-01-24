@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     tools:context=".Activity.CreateProfileActivity"
     android:orientation="vertical"
-    android:layout_marginTop="20dp"
+    android:layout_marginTop="10dp"
     android:gravity="center_horizontal">
     <TextView
         android:layout_width="match_parent"
@@ -73,7 +73,7 @@
     <EditText
         android:paddingStart="4dp"
         android:layout_width="380dp"
-        android:layout_height="120dp"
+        android:layout_height="100dp"
         android:hint="Don't think too much, just write about yourself!"
         android:inputType="textMultiLine"
         android:id="@+id/et_bio_cp"

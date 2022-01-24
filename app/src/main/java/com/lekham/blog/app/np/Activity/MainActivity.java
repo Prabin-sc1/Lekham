@@ -1,7 +1,9 @@
 package com.lekham.blog.app.np.Activity;
 
 
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,10 +11,12 @@ import android.os.Handler;
 import android.view.Window;
 import android.view.WindowManager;
 
+import com.google.android.material.navigation.NavigationView;
 import com.lekham.blog.app.np.R;
 
 public class MainActivity extends AppCompatActivity {
     private static int timer = 2000;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
